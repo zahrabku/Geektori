@@ -1,0 +1,10 @@
+@use 'colors';
+
+.button__plus{
+    color: colors.$white-color;
+    border-style: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: colors.$blue-button;
+}

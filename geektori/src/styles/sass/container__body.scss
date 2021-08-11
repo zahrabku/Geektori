@@ -1,9 +1,13 @@
-
 @use 'colors';
 
 
 .container__body {
     background-color: colors.$background-color;
     font-family: 'El Messiri', sans-serif;
+    direction: rtl;
+}
+
+.container__body *{
+    margin: 0;
 }
 

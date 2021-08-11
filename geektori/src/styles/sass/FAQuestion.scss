@@ -1,0 +1,21 @@
+@use 'colors';
+
+.FAQuestion__content{
+    padding: 16px 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: colors.$white-color;
+
+}
+
+.FAQuestion__text{
+    flex-grow: 1;
+}
+
+
+
+.FAQuestion:hover {
+
+}
