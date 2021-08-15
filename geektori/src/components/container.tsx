@@ -3,9 +3,9 @@ import '../styles/sass/container__body.scss'
 
 
 
-function Container(props) {
+const Container: React.FC = (props) => {
     return (
-        <div className={props.className} >
+        <div className={"container__body"} >
             {props.children}
         </div>
     );
