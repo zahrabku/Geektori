@@ -1,10 +1,21 @@
 import React from "react";
 
-interface IProps {
+interface DescriptionProps {
 	text: string;
 }
 
-const Description = (props: IProps) => {
+interface PriceProps {
+	price: string;
+	main_price?: string;
+}
+
+interface CardContentProps {
+	/* allows multiple elements, strings, numbers, fragments, portals ... */
+	children: React.ReactNode;
+	className?: string;
+}
+
+const Description = (props: DescriptionProps) => {
 	return (
 		<div className={"esticker-desc"}>
 			<h2>{props.text}</h2>
@@ -12,37 +23,34 @@ const Description = (props: IProps) => {
 	);
 };
 
-const Price = (props) => {
-	if (props.price == 0)
+const Price = (props: PriceProps) => {
+	if (props.price === "0")
 		return (
-			<div className={props.className}>
+			<div className={"esticker-price"}>
 				<span className={"not-exist"}>ناموجود</span>
 			</div>
 		);
 
 	return (
-		<div className={props.className}>
+		<div className={"esticker-price"}>
 			<span className={"price offed-price"}>
 				{props.price}
 				<span> تومان </span>
 			</span>
-			{props.main_price}
-			{/* {!!props.main_price && <span className={"price main_price"}>{props.main_price}</span>} */}
+			{/* {props.main_price} */}
+			{!!props.main_price && (
+				<del className={"price main_price"}>{props.main_price}</del>
+			)}
 		</div>
 	);
 };
 
-const CardContent = (props) => {
+const CardContent = (props: CardContentProps) => {
 	return (
-		<div className={props.className}>
-			<Description text={props.desc} />
-			<Price
-				className={"esticker-price"}
-				price={props.price}
-				main_price={props.main_price}
-			/>
+		<div className={`esticker-content ${props.className ?? ""}`}>
+			{props.children}
 		</div>
 	);
 };
 
-export default CardContent;
+export { CardContent, Description, Price };
