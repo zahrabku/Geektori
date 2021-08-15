@@ -6,7 +6,7 @@ import FAQContainer from './components/FAQContainer'
 function App() {
   return(
 
-      <Container >
+      <Container className='container__body'>
         <ItemHeader text="سوالات پرتکرار"></ItemHeader>
         <FAQContainer></FAQContainer>
       </Container>
