@@ -1,15 +1,13 @@
-import Container from './components/container.js'
+import Container from './components/container'
 import './styles/sass/container__body.scss'
-import ItemHeader from './components/ItemHeader.js'
-import FAQContainer from './components/FAQContainer.js'
+import ItemHeader from './components/ItemHeader'
+import FAQContainer from './components/FAQContainer'
 
 function App() {
   return(
 
-      <Container className={'container__body'}>
-
+      <Container >
         <ItemHeader text="سوالات پرتکرار"></ItemHeader>
-        
         <FAQContainer></FAQContainer>
       </Container>
 

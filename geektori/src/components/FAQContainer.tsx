@@ -1,9 +1,8 @@
-import React from 'react'
-import FAQItem from './FAQItem.js'
+import React, { FC } from 'react'
+import FAQItem from './FAQItem'
 import '../styles/sass/FAQContainer.scss'
 
-function FAQContainer(props){
-    
+const FAQContainer:FC=(props)=>{
 
     return(
         <div className="FAQContainer">

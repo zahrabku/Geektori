@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import '../styles/sass/horizontalLine.scss'
 
 
-function HorizontalLine(props){
+const HorizontalLine:FC=(props)=>{
     return(
             <div className="horizontalLine"></div>
     )

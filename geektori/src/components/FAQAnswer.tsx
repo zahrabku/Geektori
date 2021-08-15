@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import '../styles/sass/FAQAnswer.scss'
 
 
-function FAQAnswer(props){
+const FAQAnswer : FC = (props) => {
     return(
         <div className="FAQAnswer__container">
             <p>{props.children}</p>

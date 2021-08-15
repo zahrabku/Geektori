@@ -1,0 +1,10 @@
+@use 'colors';
+
+.button{
+    color: black;
+    border-style: none;
+    width: 50px;
+    height: 30px;
+    border-radius: 25%;
+    background-color:colors.$background-color;
+}

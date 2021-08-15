@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import FAQAnswer from './FAQAnswer';
 import FAQuestion from './FAQuestion';
 import '../styles/sass/FAQItem.scss'
 
+interface IFAQItem{
+    question:string;
+    answer:string;
+}
 
-function FAQItem(props){
+const FAQItem:FC<IFAQItem>=(props)=>{
 
     const [isOpen,setIsOpen]=useState(false);
 
