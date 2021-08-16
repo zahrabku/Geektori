@@ -10,7 +10,7 @@ interface IitemHeader{
 
 const ItemHeader:FC<IitemHeader>=(props)=>{
     return(
-        <Container >
+        <Container className='Container__ItemHeader'>
             <HorizontalLine></HorizontalLine>
                 <h3 className="ItemHeader__text">{props.text}</h3>
             <HorizontalLine></HorizontalLine>
