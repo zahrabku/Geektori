@@ -1,8 +1,8 @@
 import React from "react";
 
 interface CardMediaProps {
-	image_src: string;
-	image_alt: string;
+	imageSrc: string;
+	imageAlt: string;
 	className?: string;
 }
 
@@ -18,7 +18,7 @@ const Image = (
 const CardMedia = (props: CardMediaProps) => {
 	return (
 		<div className={`esticker-media ${props.className ?? ""}`}>
-			<Image src={props.image_src} alt={props.image_alt} />
+			<Image src={props.imageSrc} alt={props.imageAlt} />
 		</div>
 	);
 };

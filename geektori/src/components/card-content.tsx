@@ -7,11 +7,10 @@ interface DescriptionProps {
 interface PriceProps {
 	price: string;
 	main_price?: string;
+	existence?: boolean;
 }
 
 interface CardContentProps {
-	/* allows multiple elements, strings, numbers, fragments, portals ... */
-	children: React.ReactNode;
 	className?: string;
 }
 
@@ -24,20 +23,19 @@ const Description = (props: DescriptionProps) => {
 };
 
 const Price = (props: PriceProps) => {
-	if (props.price === "0")
+	if (props.existence === false) {
 		return (
 			<div className={"esticker-price"}>
 				<span className={"not-exist"}>ناموجود</span>
 			</div>
 		);
-
+	}
 	return (
 		<div className={"esticker-price"}>
 			<span className={"price offed-price"}>
 				{props.price}
 				<span> تومان </span>
 			</span>
-			{/* {props.main_price} */}
 			{!!props.main_price && (
 				<del className={"price main_price"}>{props.main_price}</del>
 			)}
@@ -45,7 +43,7 @@ const Price = (props: PriceProps) => {
 	);
 };
 
-const CardContent = (props: CardContentProps) => {
+const CardContent: React.FC<CardContentProps> = (props) => {
 	return (
 		<div className={`esticker-content ${props.className ?? ""}`}>
 			{props.children}

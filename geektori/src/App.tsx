@@ -10,12 +10,13 @@ import "./styles/sass/general.scss";
 import Vanilla from "./images/vanilla.png";
 import Lama from "./images/lama.png";
 import Octopus from "./images/octopus.jpg";
+import Penguin from "./images/penguin.png";
 
 function App() {
 	return (
 		<Container>
 			<Card>
-				<CardMedia image_src={Lama} image_alt='cute lama' />
+				<CardMedia imageSrc={Lama} imageAlt='cute lama' />
 				<CardContent>
 					<Description text='Cute Lama استیکر' />
 					<Price price='۲/۹۵۰' main_price='۳/...' />
@@ -24,7 +25,7 @@ function App() {
 				<OffLable />
 			</Card>
 			<Card>
-				<CardMedia image_src={Vanilla} image_alt='vanilla ice cream' />
+				<CardMedia imageSrc={Vanilla} imageAlt='vanilla ice cream' />
 				<CardContent>
 					<Description text='استیکر بستنی وانیلی' />
 					<Price price='۲/۹۵۵' main_price='۳/۶۰۰' />
@@ -32,10 +33,18 @@ function App() {
 				<AddToCart />
 			</Card>
 			<Card>
-				<CardMedia image_src={Octopus} image_alt='pink octopus' />
+				<CardMedia imageSrc={Octopus} imageAlt='pink octopus' />
 				<CardContent>
 					<Description text='Pink Octopus استیکر' />
 					<Price price='۳/۰۰۰' />
+				</CardContent>
+				<AddToCart />
+			</Card>
+			<Card>
+				<CardMedia imageSrc={Penguin} imageAlt='penguin' />
+				<CardContent>
+					<Description text='Penguin استیکر' />
+					<Price price='۳/۰۰۰' existence={false} />
 				</CardContent>
 				<AddToCart />
 			</Card>
