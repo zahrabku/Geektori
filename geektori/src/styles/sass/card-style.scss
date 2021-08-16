@@ -1,0 +1,87 @@
+@use 'colors';
+
+.esticker-card {
+	width: 280px;
+	height: 370px;
+	border: 1px solid #ccc;
+	border-radius: 4%;
+	background-color: white;
+	position: relative;
+
+	&:hover .add-button {
+		display: block;
+	}
+}
+
+.card-lable {
+	border-radius: 50px;
+	position: absolute;
+	top: 7px;
+
+	* {
+		color: white;
+		font-size: 14px;
+		position: absolute;
+		top: 2px;
+		left: 14px;
+	}
+}
+
+.add-button {
+	width: 40px;
+	height: 25px;
+	color: colors.$background-color;
+	background-color: colors.$blue-button;
+	border-style: none;
+	display: none;
+	left: 7px;
+}
+
+.off-lable {
+	width: 65px;
+	height: 25px;
+	background-color: colors.$red-color;
+	right: 7px;
+}
+
+.plus-icon {
+	transform: translate(-3%, 20%);
+}
+
+.esticker-image {
+	width: 100%;
+	border-radius: 4% 4% 0 0;
+}
+
+.esticker-content {
+	.esticker-desc {
+		text-align: center;
+	}
+
+	.esticker-desc > h2 {
+		font-size: 20px;
+		font-weight: 500;
+		margin: 10px 0px;
+		padding: 0px 10px;
+	}
+
+	.esticker-price {
+		display: flex;
+		justify-content: space-evenly;
+		padding: 10px;
+		font-size: 18px;
+
+		.not-exist {
+			font-weight: 600;
+			color: colors.$red-color;
+		}
+
+		.price {
+			color: colors.$price-color;
+		}
+
+		.offed-price {
+			font-weight: 600;
+		}
+	}
+}

@@ -1,15 +1,11 @@
-import React, { FC } from 'react'
+import React from 'react'
 import '../styles/sass/container__body.scss'
 
-interface IContainer{
-    className:string;
-}
 
-const Container: FC<IContainer> = (props) => {
-    
+
+const Container: React.FC = (props) => {
     return (
-        
-        <div className={`container__body ${props.className}`} >
+        <div className={"container__body"} >
             {props.children}
         </div>
     );
