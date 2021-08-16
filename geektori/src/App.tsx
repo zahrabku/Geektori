@@ -1,7 +1,7 @@
 import Container from "./components/container";
-import Card from "./components/card";
+import { Card, AddToCart, OffLable } from "./components/card";
 import CardMedia from "./components/card-media";
-import CardContent from "./components/card-content";
+import { CardContent, Description, Price } from "./components/card-content";
 
 import "./styles/sass/container__body.scss";
 import "./styles/sass/card-style.scss";
@@ -10,31 +10,44 @@ import "./styles/sass/general.scss";
 import Vanilla from "./images/vanilla.png";
 import Lama from "./images/lama.png";
 import Octopus from "./images/octopus.jpg";
+import Penguin from "./images/penguin.png";
 
 function App() {
 	return (
 		<Container>
 			<Card>
-				<CardMedia image_src={Lama} />
-				<CardContent
-					className={"esticker-content"}
-					desc={"description"}
-					price={"price"}
-					main_price={"main_price"}
-				/>
+				<CardMedia imageSrc={Lama} imageAlt='cute lama' />
+				<CardContent>
+					<Description text='Cute Lama استیکر' />
+					<Price price='۲/۹۵۰' main_price='۳/...' />
+				</CardContent>
+				<AddToCart />
+				<OffLable />
 			</Card>
-			<Card
-				image_src={Vanilla}
-				description='استیکر بستنی وانیلی'
-				off={true}
-				price='۲/۹۵۵'
-				main_price='۳/۶۰۰'
-			/>
-			<Card
-				image_src={Octopus}
-				description='Pink Octopus استیکر'
-				price='۳/۰۰۰'
-			/>
+			<Card>
+				<CardMedia imageSrc={Vanilla} imageAlt='vanilla ice cream' />
+				<CardContent>
+					<Description text='استیکر بستنی وانیلی' />
+					<Price price='۲/۹۵۵' main_price='۳/۶۰۰' />
+				</CardContent>
+				<AddToCart />
+			</Card>
+			<Card>
+				<CardMedia imageSrc={Octopus} imageAlt='pink octopus' />
+				<CardContent>
+					<Description text='Pink Octopus استیکر' />
+					<Price price='۳/۰۰۰' />
+				</CardContent>
+				<AddToCart />
+			</Card>
+			<Card>
+				<CardMedia imageSrc={Penguin} imageAlt='penguin' />
+				<CardContent>
+					<Description text='Penguin استیکر' />
+					<Price price='۳/۰۰۰' existence={false} />
+				</CardContent>
+				<AddToCart />
+			</Card>
 		</Container>
 	);
 }

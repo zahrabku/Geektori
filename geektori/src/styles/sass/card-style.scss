@@ -17,6 +17,14 @@
 	border-radius: 50px;
 	position: absolute;
 	top: 7px;
+
+	* {
+		color: white;
+		font-size: 14px;
+		position: absolute;
+		top: 2px;
+		left: 14px;
+	}
 }
 
 .add-button {
@@ -36,24 +44,8 @@
 	right: 7px;
 }
 
-.card-lable > * {
-	color: white;
-	font-size: 14px;
-	position: absolute;
-	top: 2px;
-	left: 14px;
-}
-
 .plus-icon {
-	// font-size: 12px;
-	// transform: translate(50%, 50%);
-	position: absolute;
-	top: 7;
-	left: 7;
-}
-
-.esticker-media {
-	// width: 280px;
+	transform: translate(-3%, 20%);
 }
 
 .esticker-image {
@@ -77,15 +69,14 @@
 		display: flex;
 		justify-content: space-evenly;
 		padding: 10px;
+		font-size: 18px;
 
 		.not-exist {
-			font-size: 18px;
 			font-weight: 600;
 			color: colors.$red-color;
 		}
 
 		.price {
-			font-size: 18px;
 			color: colors.$price-color;
 		}
 
