@@ -2,6 +2,7 @@ import Container from './components/container'
 import './styles/sass/container__body.scss'
 import ItemHeader from './components/ItemHeader'
 import FAQContainer from './components/FAQContainer'
+import './styles/sass/general.scss'
 
 function App() {
   return(
@@ -10,7 +11,6 @@ function App() {
         <ItemHeader text="سوالات پرتکرار"></ItemHeader>
         <FAQContainer></FAQContainer>
       </Container>
-
     
   );
 }
