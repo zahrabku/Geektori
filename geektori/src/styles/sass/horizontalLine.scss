@@ -1,0 +1,8 @@
+@use 'colors';
+
+.horizontalLine{
+background-color:  colors.$text-color;
+    width: 80px;
+    height: 0.5px;
+    align-self: center;
+}
