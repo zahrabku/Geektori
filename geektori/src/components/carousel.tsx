@@ -6,7 +6,6 @@ import Button from "./Button";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-
 interface ICarousel {
   items: React.ReactNode;
 }
@@ -17,8 +16,8 @@ const settings = {
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  nextArrow: <Button icon={faArrowRight} className='button__plus'/>,
-  prevArrow: <Button icon={faArrowLeft} className='button__plus'/>,
+  nextArrow: <Button icon={faArrowRight} className="button__plus" />,
+  prevArrow: <Button icon={faArrowLeft} className="button__plus" />,
 };
 
 const Carousel: FC<ICarousel> = (props) => {
