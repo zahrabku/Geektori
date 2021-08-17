@@ -7,16 +7,19 @@ import "./styles/sass/general.scss";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
+import Category from "./components/category";
 
 function App() {
   return (
     <BrowserRouter>
       <Container>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/category"></Route>
+          <Route path="/category">
+            <Category/>
+          </Route>
         </Switch>
       </Container>
     </BrowserRouter>

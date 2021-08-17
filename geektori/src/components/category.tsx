@@ -2,20 +2,16 @@ import React, { FC } from "react";
 import { AddToCart, Card } from "./card";
 import { CardContent, Description, Price } from "./card-content";
 import CardMedia from "./card-media";
-import Carousel from "./carousel";
 import Container from "./container";
-import FAQContainer from "./FAQContainer";
-import ItemHeader from "./ItemHeader";
 import Vanilla from "../images/vanilla.png";
 import Lama from "../images/lama.png";
 import Octopus from "../images/octopus.jpg";
 import Penguin from "../images/penguin.png";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import ItemHeader from "./ItemHeader";
+import FilterSticker from "./FilterSticker";
+import GridSticker from "./GridSticker";
 
-interface IHome {}
-
-const items: {
+const details: {
   price: number;
   image: string;
   imageAlt?: string;
@@ -59,25 +55,27 @@ const items: {
   },
 ];
 
-const Home: FC = () => {
-  const carouselItems = items.map((item) => (
-    <Card>
-      <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
-      <CardContent>
-        <Description text={item.title} />
-        <Price price={item.price} existence={item.existance} />
-      </CardContent>
-      <AddToCart />
-    </Card>
-  ));
+const categoryStickers = details.map((item) => (
+  <Card>
+    <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
+    <CardContent>
+      <Description text={item.title} />
+      <Price price={item.price} existence={item.existance} />
+    </CardContent>
+    <AddToCart />
+  </Card>
+));
+
+const Category: FC = () => {
+    console.log(categoryStickers);
+    
   return (
     <Container>
-      <ItemHeader text="جدیدترین ها" />
-      <Carousel items={carouselItems} />
-      <ItemHeader text="سوالات پرتکرار" />
-      <FAQContainer />
+      <ItemHeader text="دسته بندی استیکر" />
+      <FilterSticker />
+      <GridSticker items={categoryStickers}/>
     </Container>
   );
 };
 
-export default Home;
+export default Category;
