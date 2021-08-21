@@ -1,16 +1,10 @@
-import React, { HTMLProps } from "react";
+import React from "react";
 import styled from "styled-components";
-
-// interface MenuProps {
-// 	className?: string;
-// }
 
 interface MenuProps {
 	items?: React.ReactNode;
 	className: string;
 }
-
-// interface MenuItemProps extends HTMLProps<HTMLDivElement> {}
 
 interface MenuItemIconProps {
 	iconName: any;
@@ -56,9 +50,4 @@ const Menu: React.FC<MenuProps> = (props) => {
 	);
 };
 
-// const Menu: React.FC<MenuProps> = (props) => {
-// 	return <div className='menu'>{props.children}</div>;
-// };
-
-// export { Menu, SmallMenu, MenuItem, MenuItemName, MenuItemIcon, MenuItemInput };
 export { Menu, MenuItemName, MenuItemIcon, MenuItemInput };
