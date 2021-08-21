@@ -5,7 +5,7 @@ interface DescriptionProps {
 }
 
 interface PriceProps {
-	price: string;
+	price: string | number;
 	main_price?: string;
 	existence?: boolean;
 }
