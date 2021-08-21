@@ -1,21 +1,20 @@
-import React, { FC } from 'react'
-import Container from './container'
-import HorizontalLine from './HorizontalLine';
-import '../styles/sass/ItemHeader.scss'
+import React, { FC } from "react";
+import Container from "./container";
+import HorizontalLine from "./HorizontalLine";
+import "../styles/sass/ItemHeader.scss";
 
-
-interface IitemHeader{
-    text:string;
+interface IitemHeader {
+  text: string;
 }
 
-const ItemHeader:FC<IitemHeader>=(props)=>{
-    return(
-        <Container >
-            <HorizontalLine></HorizontalLine>
-                <h3 className="ItemHeader__text">{props.text}</h3>
-            <HorizontalLine></HorizontalLine>
-        </Container>
-    )
-}
+const ItemHeader: FC<IitemHeader> = (props) => {
+  return (
+    <Container className="Container__ItemHeader">
+      <HorizontalLine></HorizontalLine>
+      <h3 className="ItemHeader__text">{props.text}</h3>
+      <HorizontalLine></HorizontalLine>
+    </Container>
+  );
+};
 
 export default ItemHeader;
