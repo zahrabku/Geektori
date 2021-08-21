@@ -6,16 +6,16 @@ import styled from "styled-components";
 // }
 
 interface MenuProps {
-	iconName: any;
+	items?: React.ReactNode;
 	className: string;
 }
 
 // interface MenuItemProps extends HTMLProps<HTMLDivElement> {}
 
-// interface MenuItemIconProps {
-// 	iconName: any;
-// 	className?: string;
-// }
+interface MenuItemIconProps {
+	iconName: any;
+	className?: string;
+}
 
 const MenuItemName = styled.a`
 	color: rgb(50, 50, 93);
@@ -33,9 +33,9 @@ const MenuItemInput = styled.input`
 
 // const MenuItemStyled = styled.div``;
 
-// const MenuItemIcon = (props: MenuItemIconProps) => {
-// 	return <props.iconName className={`menu-icon ${props.className ?? ""}`} />;
-// };
+const MenuItemIcon = (props: MenuItemIconProps) => {
+	return <props.iconName className={`menu-icon ${props.className ?? ""}`} />;
+};
 
 // const MenuItem: React.FC<MenuItemProps> = (props) => {
 // 	return (
@@ -47,7 +47,13 @@ const MenuItemInput = styled.input`
 // };
 
 const Menu: React.FC<MenuProps> = (props) => {
-	return <div className={props.className}>{props.children}</div>;
+	console.log("ITEMS : ", props.items);
+	return (
+		<div className={props.className}>
+			{props.children}
+			{props.items}
+		</div>
+	);
 };
 
 // const Menu: React.FC<MenuProps> = (props) => {
@@ -55,4 +61,4 @@ const Menu: React.FC<MenuProps> = (props) => {
 // };
 
 // export { Menu, SmallMenu, MenuItem, MenuItemName, MenuItemIcon, MenuItemInput };
-export { Menu, MenuItemName, MenuItemInput };
+export { Menu, MenuItemName, MenuItemIcon, MenuItemInput };
