@@ -1,4 +1,4 @@
-import Container from "./components/container";
+import Container from "./components/Container";
 import "./styles/sass/container__body.scss";
 import "./styles/sass/general.scss";
 import "./styles/sass/container__body.scss";

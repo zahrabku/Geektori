@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Menu, MenuItemName } from "./Menu";
-import { Image } from "./card-media";
+import { Image } from "./CardMedia";
 import { rightMenuCategories, leftMenuCategories } from "./DataDump";
 
-import Container from "./container";
+import Container from "./Container";
 
 import Geektori from "../images/geek-logo.png";
 

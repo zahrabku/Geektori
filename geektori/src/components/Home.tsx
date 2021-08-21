@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { AddToCart, Card } from "./card";
-import { CardContent, Description, Price } from "./card-content";
-import { CardMedia } from "./card-media";
-import Carousel from "./carousel";
-import Container from "./container";
+import { AddToCart, Card } from "./Card";
+import { CardContent, Description, Price } from "./CardContent";
+import { CardMedia } from "./CardMedia";
+import Carousel from "./Carousel";
+import Container from "./Container";
 import FAQContainer from "./FAQContainer";
 import ItemHeader from "./ItemHeader";
 import { items } from "./DataDump";
