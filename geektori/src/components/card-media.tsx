@@ -12,7 +12,10 @@ const Image = (
 		HTMLImageElement
 	>
 ) => {
-	return <img className={"esticker-image"} {...props} />;
+	console.log("thsis is props : ", { ...props });
+	return (
+		<img className={`esticker-image ${props.className ?? ""}`} {...props} />
+	);
 };
 
 const CardMedia = (props: CardMediaProps) => {
@@ -23,4 +26,4 @@ const CardMedia = (props: CardMediaProps) => {
 	);
 };
 
-export default CardMedia;
+export { CardMedia, Image };
