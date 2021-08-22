@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { DataProvider } from "./context";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
+	<DataProvider>
 	<React.StrictMode>
 		<App />
-	</React.StrictMode>,
+	</React.StrictMode>
+	</DataProvider>,
 	document.getElementById("root")
 );
 

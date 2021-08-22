@@ -41,7 +41,7 @@ const MenuItemIcon = (props: MenuItemIconProps) => {
 // };
 
 const Menu: React.FC<MenuProps> = (props) => {
-	console.log("ITEMS : ", props.items);
+	// console.log("ITEMS : ", props.items);
 	return (
 		<div className={props.className}>
 			{props.children}

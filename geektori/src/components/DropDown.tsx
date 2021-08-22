@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useData } from "../context";
 
 interface IDropDown {
   label: string;
@@ -13,14 +14,16 @@ interface IDropDown {
 
 const DropDown: FC<IDropDown> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const [isSelected, setIsSelected] = useState('جدیدترین');
+  const { data, addData } = useData()!;
+  const [isSelected, setIsSelected] = useState(props.items[0]);
+  // addData('SelectedShowCategory',props.items[0])
 
   function handleOpen() {
     setIsOpen(!isOpen);
   }
   function handleSelect(e: any) {
     setIsSelected(e.target.innerText);
+    addData("SelectedShowCategory", e.target.innerText);
     setIsOpen(!isOpen);
   }
 
@@ -32,7 +35,7 @@ const DropDown: FC<IDropDown> = (props) => {
           <div className="dropdown-field-text">
             <span>{isSelected}</span>
           </div>
-          <div className="dropdown-field-icon" >
+          <div className="dropdown-field-icon">
             <FontAwesomeIcon
               icon={!isOpen ? faAngleDown : faAngleUp}
             ></FontAwesomeIcon>
@@ -40,10 +43,9 @@ const DropDown: FC<IDropDown> = (props) => {
         </div>
         {isOpen ? (
           <div className="dropdown-items">
-            <div onClick={handleSelect}>جدیدترین</div>
-            <div onClick={handleSelect}>پرفروش ترین</div>
-            <div onClick={handleSelect}>ارزان ترین</div>
-            <div onClick={handleSelect}>گران ترین</div>
+            {props.items.map((i) => {
+              return <div onClick={handleSelect}>{i}</div>;
+            })}
           </div>
         ) : null}
       </div>

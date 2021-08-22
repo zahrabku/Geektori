@@ -5,10 +5,8 @@ import DropDown from "./DropDown";
 import Switch from "./Switch";
 import RangeSlider from "./Slider";
 
-
-
-
 const itemDetails = ["جدیدترین", "قدیمی ترین", "فلان"];
+const itemDetailscategory = ["فیلم", "کمیک", "برنامه نویسی"];
 
 const FilterSticker: FC = () => {
   return (
@@ -17,7 +15,7 @@ const FilterSticker: FC = () => {
         <DropDown label="ترتیب نمایش" items={itemDetails}></DropDown>
         <Switch label="فقط موجود"></Switch>
         <Switch label="فقط تخفیف‌دار"></Switch>
-        <DropDown label="دسته بندی" items={itemDetails}></DropDown>
+        <DropDown label="دسته بندی" items={itemDetailscategory}></DropDown>
         <RangeSlider></RangeSlider>
       </div>
     </Container>

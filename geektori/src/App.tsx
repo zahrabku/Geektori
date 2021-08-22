@@ -8,11 +8,13 @@ import "./styles/sass/general.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/category";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
     <Container>
+      <Navbar/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/category" component={Category}/>
