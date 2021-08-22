@@ -12,16 +12,12 @@ import Category from "./components/category";
 function App() {
   return (
     <BrowserRouter>
-      <Container>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/category">
-            <Category/>
-          </Route>
-        </Switch>
-      </Container>
+    <Container>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/category" component={Category}/>
+      </Switch>
+    </Container>
     </BrowserRouter>
   );
 }

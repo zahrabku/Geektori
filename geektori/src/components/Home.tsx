@@ -13,7 +13,7 @@ import Penguin from "../images/penguin.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface IHome {}
+// interface IHome {}
 
 const items: {
   price: number;

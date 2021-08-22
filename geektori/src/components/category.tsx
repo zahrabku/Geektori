@@ -56,24 +56,24 @@ const details: {
 ];
 
 const categoryStickers = details.map((item) => (
-  <Card>
-    <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
-    <CardContent>
-      <Description text={item.title} />
-      <Price price={item.price} existence={item.existance} />
-    </CardContent>
-    <AddToCart />
-  </Card>
+  
+    <Card>
+      <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
+      <CardContent>
+        <Description text={item.title} />
+        <Price price={item.price} existence={item.existance} />
+      </CardContent>
+      <AddToCart />
+    </Card>
+  
 ));
 
 const Category: FC = () => {
-    console.log(categoryStickers);
-    
   return (
     <Container>
       <ItemHeader text="دسته بندی استیکر" />
       <FilterSticker />
-      <GridSticker items={categoryStickers}/>
+      <GridSticker items={categoryStickers} />
     </Container>
   );
 };

@@ -1,0 +1,147 @@
+@use 'colors';
+
+.filtersticker-container{
+    background-color: colors.$white-color;
+    max-width: 1200px;
+    width: 98%;
+    height: 123px;
+    border-radius: 10px;
+	border: 1px solid #ccc;
+    margin: 20px auto;
+    display: flex;
+}
+
+
+.formControl-wrapper{
+    padding: 20px;
+    flex: 1 1 0px;
+}
+.formControl-wrapper *{
+    align-self: center;
+}
+
+.dropdown-field{
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--color-border, #BBC3CE);
+    height: 50px;
+    padding: 0 2px;
+    border-radius: 5px;
+    margin-top: 17px;
+
+}
+
+.dropdown-field-icon{
+    float: left;
+    line-height: 48px;
+    font-size: 12px;
+    width: 52px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dropdown-field-text{
+    width: calc(100% - 52px);
+    float: right;
+    line-height: 48px;
+    padding: 0 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.formControl-label{
+    margin-bottom: 17px;
+    cursor: pointer;
+}
+.Switch-field{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+.Switch-items{
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--color-border, #BBC3CE);
+    height: 50px;
+    padding: 0 20px;
+    padding: 3px;
+    display: table;
+    table-layout: fixed;
+    border-radius: 5px;
+    margin-top: 17px;
+}
+
+
+.range-slider{
+    height: auto;
+    position: relative;
+    width: 95%;
+    margin:auto;
+    direction: ltr;
+}
+
+.input-range--label{
+    color: var(--color-complement, #6B7C93);
+    font-size: 12px;
+    white-space: nowrap;
+    direction: rtl;
+}
+
+.input-range--label--min{
+    float: left;
+}
+.input-range--label--max{
+    float: right;
+}
+
+.input-range--label--min .input-range--label--max{
+    margin-top: 16px;
+}
+
+.switch-active{
+    background: var(--color-primary, #606CEC);
+    box-shadow: 0 0 10px rgb(160 160 160 / 70%);
+    color: #fff;
+    cursor: default;
+}
+
+.dropdown-items{
+    transform: translateY(10px) scale(1);
+    width: 100%;
+    max-height: 196px;
+    overflow: auto;
+    background: #fff;
+    z-index: 10;
+    border-radius: 5px;
+    border: 1px solid var(--color-border, #BBC3CE);
+    box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
+    transition: all 0.12s;
+    position: relative;
+}
+.dropdown-items *{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-items *:hover{
+    color: colors.$blue-button;
+}
+
+.main-slider{
+    margin-top: 23px;
+}
+
+.slider-button{
+    background: var(--color-primary, #606CEC);
+    color: #fff;
+    padding: 6px 8px;
+    display: inline-block;
+    direction: rtl;
+    left: -50%;
+    position: relative;
+    border-radius: 35px;
+}
