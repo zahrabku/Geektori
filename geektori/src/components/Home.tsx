@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { items } from "./DataDump";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ShoppingCartModal from "./shoppingCartModal";
 
 // interface IHome {}
 
@@ -78,6 +79,7 @@ const Home: FC = () => {
 
 	return (
 		<Container>
+      <ShoppingCartModal/>
 			<ItemHeader text='جدیدترین ها' />
 			<Carousel items={carouselItems} />
 			<ItemHeader text='سوالات پرتکرار' />
