@@ -5,8 +5,9 @@ import Button from "./Button";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useData } from "../context";
+import ShoppingCartProduct from "./ShoppingCart-product";
 
-const ShoppingCart: FC = () => {
+const ShoppingCart: FC = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const [numerOfItems, setNumerOfItems] = useState<number>(0);
@@ -28,7 +29,8 @@ const ShoppingCart: FC = () => {
         </div>
       </div>
       <div className="shoppingCart-body">
-        هنوز محصولی به سبد خرید اضافه نکردید
+        {/* {children ? children : "هنوز محصولی به سبد خرید اضافه نکردید"} */}
+        <ShoppingCartProduct />
       </div>
       <div className="shoppingCart-footer">
         <div className="shoppingCart-totalPrice">

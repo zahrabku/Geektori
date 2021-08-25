@@ -9,10 +9,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/category";
 import { Navbar } from "./components/Navbar";
-import ShoppingCart from "./components/ShoppingCart";
-import ShoppingCartModal from "./components/shoppingCartModal";
-import { useState } from "react";
-import { useData } from "./context";
 
 function App() {
   return (

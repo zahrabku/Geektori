@@ -1,13 +1,17 @@
 import React, { FC } from "react";
 import Container from "./container";
 import ShoppingCart from "./ShoppingCart";
-import '../styles/sass/ShoppingCartModal.scss'
+import "../styles/sass/ShoppingCartModal.scss";
 
-const ShoppingCartModal: FC = () => {
+interface IShoppingCartModal{
+  items:React.ReactNode[];
+}
+
+const ShoppingCartModal: FC<IShoppingCartModal> = ({ items }) => {
   return (
-    <Container className='ShoppingCartModal-container'>
+    <Container className="ShoppingCartModal-container">
       <div className="overlay"></div>
-      <ShoppingCart />
+      <ShoppingCart>{items}</ShoppingCart>
     </Container>
   );
 };

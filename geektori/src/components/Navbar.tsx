@@ -7,17 +7,17 @@ import Geektori from "../images/geek-logo.png";
 import ShoppingCartModal from "./shoppingCartModal";
 import { useData } from "../context";
 import {
-	FaAngleDown,
-	FaShoppingBasket,
-	FaHeart,
-	FaSearch,
+  FaAngleDown,
+  FaShoppingBasket,
+  FaHeart,
+  FaSearch,
 } from "react-icons/fa";
 
 interface MenuCategories {
-	name: string;
-	icon?: any;
-	classNameStyle?: string;
-	click?:()=>void
+  name: string;
+  icon?: any;
+  classNameStyle?: string;
+  click?: () => void;
 }
 
 const Navbar: FC = () => {
@@ -61,6 +61,8 @@ const Navbar: FC = () => {
     </Menu>
   ));
 
+  const items = [<div />];
+
   return (
     <Container>
       <Menu className="menu">
@@ -69,9 +71,13 @@ const Navbar: FC = () => {
         </Menu>
         <Menu className="small-menu left" items={leftMenuItems}></Menu>
       </Menu>
-      {useData()?.shoppingCartModalIsOpen ? <ShoppingCartModal /> : ""}
+      {useData()?.shoppingCartModalIsOpen ? (
+        <ShoppingCartModal items={items} />
+      ) : (
+        ""
+      )}
     </Container>
   );
 };
 
-export { Navbar};
+export { Navbar };

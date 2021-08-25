@@ -1,6 +1,6 @@
 @use 'colors';
 .shoppingCart-container{
-    transition: 0.3s;
+    // transition: 1s;
     background: #fff;
     position: absolute;
     z-index: 2;
@@ -11,6 +11,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    // transform: translateX(-475px);
 }
 
 .shoppingCart-header{
@@ -86,14 +87,19 @@
     font-size: 22px;
 }
 
-.shoppingCart-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+// .shoppingCart-body{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
 
 .close-button{
     cursor: pointer;
     background-color: white;
+}
+
+.open-modal{
+    transform: translateX(0);
+    visibility: visible;
 }
