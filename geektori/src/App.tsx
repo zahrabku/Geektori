@@ -8,9 +8,11 @@ import "./styles/sass/general.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/category";
-import Navbar from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 import ShoppingCart from "./components/ShoppingCart";
 import ShoppingCartModal from "./components/shoppingCartModal";
+import { useState } from "react";
+import { useData } from "./context";
 
 function App() {
   return (
@@ -20,7 +22,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/category" component={Category} />
-          <Route path="/hamberger" component={ShoppingCartModal} />
         </Switch>
       </Container>
     </BrowserRouter>

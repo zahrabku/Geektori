@@ -21,7 +21,7 @@ const settings = {
 };
 
 const Carousel: FC<IItemsToShow> = (props) => {
-  console.log(props.items);
+  // console.log(props.items);
 
   return <Slider {...settings}>{props.items}</Slider>;
 };

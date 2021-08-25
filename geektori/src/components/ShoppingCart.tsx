@@ -4,24 +4,31 @@ import "../styles/sass/shoppingCart.scss";
 import Button from "./Button";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useData } from "../context";
 
-interface IShoppingCart {}
+const ShoppingCart: FC = () => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-const ShoppingCart: FC<IShoppingCart> = () => {
-  const [totalPrice, setTotalPrice] = useState();
+  const [numerOfItems, setNumerOfItems] = useState<number>(0);
+
   return (
     <div className="shoppingCart-container">
       <div className="shoppingCart-header">
-        <div>
-          <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
-        </div>
+        <Button
+          className="close-button"
+          icon={faTimes}
+          click={useData()!.addShoppingCartModalIsOpen}
+        />
         <div className="shoppingCart-header-text">سبد خرید</div>
         <div className="shoppingCart-header-numberOfItems">
-          <Button className="shoppingCart-header-numberOfItems-badge"></Button>
+          <Button
+            className="shoppingCart-header-numberOfItems-badge"
+            text={numerOfItems.toString()}
+          ></Button>
         </div>
       </div>
       <div className="shoppingCart-body">
-      هنوز محصولی به سبد خرید اضافه نکردید
+        هنوز محصولی به سبد خرید اضافه نکردید
       </div>
       <div className="shoppingCart-footer">
         <div className="shoppingCart-totalPrice">

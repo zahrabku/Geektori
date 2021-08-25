@@ -79,7 +79,7 @@ const Home: FC = () => {
 
 	return (
 		<Container>
-      <ShoppingCartModal/>
+      {/* <ShoppingCartModal/> */}
 			<ItemHeader text='جدیدترین ها' />
 			<Carousel items={carouselItems} />
 			<ItemHeader text='سوالات پرتکرار' />
