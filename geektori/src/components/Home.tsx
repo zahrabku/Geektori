@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Product from "./product";
-import { items } from "./DataDump";
+import { items } from "../utils/DataDump";
 
 const Home: FC = () => {
 	return (

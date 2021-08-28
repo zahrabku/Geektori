@@ -8,6 +8,7 @@ import "./styles/sass/general.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/category";
+import Detail from "./pages/DetailPage";
 import { Navbar } from "./components/Navbar";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/category" component={Category} />
+		  <Route exact path="/product/:slug" component={Detail} />
         </Switch>
       </Container>
     </BrowserRouter>

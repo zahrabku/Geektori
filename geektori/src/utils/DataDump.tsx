@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuItemIcon } from "./Menu";
+import { MenuItemIcon } from "../components/Menu";
 import {
   FaAngleDown,
   FaShoppingBasket,
