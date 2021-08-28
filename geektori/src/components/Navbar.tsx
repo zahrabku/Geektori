@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Menu, MenuItemIcon, MenuItemName } from "./Menu";
 import { Image } from "./CardMedia";
-import { rightMenuCategories, leftMenuCategories } from "./DataDump";
+import { rightMenuCategories, leftMenuCategories } from "../utils/DataDump";
 import Container from "./Container";
 import Geektori from "../images/geek-logo.png";
 import ShoppingCartModal from "./shoppingCartModal";
@@ -61,7 +61,7 @@ const Navbar: FC = () => {
 	));
 
 	return (
-		<Container>
+		<Container className="main-container">
 			<Menu className='menu'>
 				<Menu className='small-menu right' items={rightMenuItems}>
 					<Image className='geektori-logo' src={Geektori} alt='geektori logo' />

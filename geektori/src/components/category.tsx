@@ -11,7 +11,7 @@ import ItemHeader from "./ItemHeader";
 import FilterSticker from "./FilterSticker";
 import GridSticker from "./GridSticker";
 import { useData } from "../context";
-import { items } from "./DataDump";
+import { items } from "../utils/DataDump";
 import Product from "./product";
 
 // const filteredDetail=details.filter(i=>{

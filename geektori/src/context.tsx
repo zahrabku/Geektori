@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useContext, useState } from "react";
-import { CardItems } from "../src/components/DataDump";
+import { CardItems } from "./utils/DataDump";
 
 const DataContext = React.createContext<
   | {

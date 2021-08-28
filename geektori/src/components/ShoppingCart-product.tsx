@@ -3,7 +3,7 @@ import Button from "./Button";
 import Container from "./Container";
 import { faMinus, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sass/ShoppingCart-product.scss";
-import { CardItems } from "./DataDump";
+import { CardItems } from "../utils/DataDump";
 
 interface IShoppingCartProduct {
   item: CardItems;

@@ -3,7 +3,7 @@ import { useData } from "../context";
 import { AddToCart, Card } from "./Card";
 import { CardContent, Description, Price } from "./CardContent";
 import { CardMedia } from "./CardMedia";
-import { CardItems } from "./DataDump";
+import { CardItems } from "../utils/DataDump";
 
 interface IProduct {
   items: CardItems;

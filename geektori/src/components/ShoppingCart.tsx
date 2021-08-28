@@ -4,7 +4,7 @@ import Button from "./Button";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useData } from "../context";
 import ShoppingCartProduct from "./ShoppingCart-product";
-import { CardItems } from "./DataDump";
+import { CardItems } from "../utils/DataDump";
 
 interface IShoppingCart {
   items: CardItems[];
