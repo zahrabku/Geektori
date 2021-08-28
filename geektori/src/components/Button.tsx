@@ -7,11 +7,13 @@ interface IButton {
   icon?: IconProp;
   text?: string;
   className?: string;
+  click?:()=>void
 }
+
 
 const Button: FC<IButton> = (props) => {
   return (
-    <button className={`button ${props.className}`}>
+    <button className={`button ${props.className}`} onClick={props.click}>
       <div>{props.text}</div>
       {props.icon ? <FontAwesomeIcon icon={props.icon}></FontAwesomeIcon> : ""}
     </button>
