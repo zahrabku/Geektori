@@ -1,7 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { useContext, useState } from "react";
 import { ICardItem } from "../src/components/DataDump";
 import update from "immutability-helper";
+import { useEffect } from "react";
 
 const DataContext = React.createContext<
   | {
@@ -26,7 +27,9 @@ const DataProvider: React.FC = ({ children }) => {
 
   const [shoppingCartModalIsOpen, setShoppingCartModalIsOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useState<ICardItem[]>([]);
+  const [cartItems, setCartItems] = useState<ICardItem[]>(
+    JSON.parse(localStorage.getItem("cartItems") || "{}")
+  );
 
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
@@ -50,7 +53,6 @@ const DataProvider: React.FC = ({ children }) => {
             : item
         );
       }
-      localStorage.setItem(`${clickedItem}`, JSON.stringify(cartItems));
 
       return [...prev, { ...clickedItem, amount: 1 }];
     });
@@ -91,6 +93,10 @@ const DataProvider: React.FC = ({ children }) => {
         break;
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem(`cartItems`, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleOpenSnackBar = () => {
     setOpenSnackBar(true);

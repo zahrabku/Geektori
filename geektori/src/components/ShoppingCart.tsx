@@ -6,9 +6,13 @@ import { useData } from "../context";
 import ShoppingCartProduct from "./ShoppingCart-product";
 import { ICardItem } from "./DataDump";
 
-
 const ShoppingCart: FC = () => {
   const data = useData()!;
+
+  const localStorageCartItems = JSON.parse(
+    localStorage.getItem("cartItems") || "{}"
+  );
+  console.log(localStorageCartItems);
 
   const calculateTotalPrice = (items: ICardItem[]) => {
     let totalPrice = 0;
@@ -35,18 +39,15 @@ const ShoppingCart: FC = () => {
         <div className="shoppingCart-header-numberOfItems">
           <Button
             className="shoppingCart-header-numberOfItems-badge"
-            text={getTotalItems(data.CartItems).toString()}
+            text={getTotalItems(localStorageCartItems).toString()}
           ></Button>
         </div>
       </div>
       <div className="shoppingCart-body">
-        {data.CartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
-        {data.CartItems.map((i) => {
+        {localStorageCartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
+        {localStorageCartItems.map((i:ICardItem) => {
           return (
-            <ShoppingCartProduct
-              item={i}
-              handleAmount={data.handleAmount}
-            />
+            <ShoppingCartProduct item={i} handleAmount={data.handleAmount} />
           );
         })}
       </div>
@@ -54,7 +55,7 @@ const ShoppingCart: FC = () => {
         <div className="shoppingCart-totalPrice">
           <div className="shoppingCart-totalPrice-text">مبلغ سبد خرید:</div>
           <div className="shoppingCart-totalPrice-number shoppingCart-header-text">
-            {calculateTotalPrice(data.CartItems)} تومان
+            {calculateTotalPrice(localStorageCartItems)} تومان
           </div>
         </div>
         <Button
