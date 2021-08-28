@@ -4,18 +4,13 @@ import Button from "./Button";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useData } from "../context";
 import ShoppingCartProduct from "./ShoppingCart-product";
-import { CardItems } from "./DataDump";
+import { ICardItem } from "./DataDump";
 
-interface IShoppingCart {
-  items: CardItems[];
-  addToCart: (clickedItem: CardItems) => void;
-  removeFromCart: (id: number) => void;
-}
 
 const ShoppingCart: FC = () => {
-  const Data = useData()!;
+  const data = useData()!;
 
-  const calculateTotalPrice = (items: CardItems[]) => {
+  const calculateTotalPrice = (items: ICardItem[]) => {
     let totalPrice = 0;
     items.map((item) => {
       totalPrice += item.amount * item.price;
@@ -24,7 +19,7 @@ const ShoppingCart: FC = () => {
     return totalPrice;
   };
 
-  const getTotalItems = (items: CardItems[]) => {
+  const getTotalItems = (items: ICardItem[]) => {
     return items.length;
   };
 
@@ -40,18 +35,17 @@ const ShoppingCart: FC = () => {
         <div className="shoppingCart-header-numberOfItems">
           <Button
             className="shoppingCart-header-numberOfItems-badge"
-            text={getTotalItems(Data.CartItems).toString()}
+            text={getTotalItems(data.CartItems).toString()}
           ></Button>
         </div>
       </div>
       <div className="shoppingCart-body">
-        {Data.CartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
-        {Data.CartItems.map((i) => {
+        {data.CartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
+        {data.CartItems.map((i) => {
           return (
             <ShoppingCartProduct
               item={i}
-              remove={() => Data.handleRemoveFromCart(i.id)}
-              add={() => Data.handleAddToCart(i)}
+              handleAmount={data.handleAmount}
             />
           );
         })}
@@ -60,7 +54,7 @@ const ShoppingCart: FC = () => {
         <div className="shoppingCart-totalPrice">
           <div className="shoppingCart-totalPrice-text">مبلغ سبد خرید:</div>
           <div className="shoppingCart-totalPrice-number shoppingCart-header-text">
-            {calculateTotalPrice(Data.CartItems)} تومان
+            {calculateTotalPrice(data.CartItems)} تومان
           </div>
         </div>
         <Button
