@@ -12,10 +12,10 @@ const Image = (
     HTMLImageElement
   >
 ) => {
-	console.log("thsis is props : ", { ...props });
-	return (
-		<img className={`esticker-image ${props.className ?? ""}`} {...props} />
-	);
+  // console.log("thsis is props : ", { ...props });
+  return (
+    <img className={`esticker-image ${props.className ?? ""}`} {...props} />
+  );
 };
 
 const CardMedia = (props: CardMediaProps) => {

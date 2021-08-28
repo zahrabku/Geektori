@@ -1,0 +1,14 @@
+.grid-template{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    max-width: 1200px;
+    width: 98%;
+    margin: 0 auto;
+    grid-gap: 23px;
+    padding-bottom:20px;
+}
+
+.grid-item{
+    grid-column: span 3;
+    width: 100%;
+}

@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface MenuProps {
 	items?: React.ReactNode;
 	className: string;
+	click?:()=>void
 }
 
 interface MenuItemIconProps {
@@ -41,9 +42,9 @@ const MenuItemIcon = (props: MenuItemIconProps) => {
 // };
 
 const Menu: React.FC<MenuProps> = (props) => {
-	console.log("ITEMS : ", props.items);
+	// console.log("ITEMS : ", props.items);
 	return (
-		<div className={props.className}>
+		<div className={props.className} onClick={props.click}>
 			{props.children}
 			{props.items}
 		</div>
