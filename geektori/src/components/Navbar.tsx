@@ -21,6 +21,7 @@ interface MenuCategories {
 }
 
 const Navbar: FC = () => {
+  const Data = useData()!;
   const leftMenuCategories: Partial<MenuCategories>[] = [
     {
       icon: <MenuItemIcon iconName={FaSearch} className="search-icon" />,
@@ -34,7 +35,7 @@ const Navbar: FC = () => {
         />
       ),
       classNameStyle: "shopping-basket",
-      click: useData()!.addShoppingCartModalIsOpen,
+      click: () => Data.addShoppingCartModalIsOpen(),
     },
     {
       name: "عضویت",

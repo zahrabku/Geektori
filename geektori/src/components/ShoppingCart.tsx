@@ -13,7 +13,6 @@ interface IShoppingCart {
 }
 
 const ShoppingCart: FC = () => {
-
   const Data = useData()!;
 
   const calculateTotalPrice = (items: CardItems[]) => {
