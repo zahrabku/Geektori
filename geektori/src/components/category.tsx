@@ -11,65 +11,12 @@ import ItemHeader from "./ItemHeader";
 import FilterSticker from "./FilterSticker";
 import GridSticker from "./GridSticker";
 import { useData } from "../context";
-
-const details: {
-  price: number;
-  image: string;
-  imageAlt?: string;
-  title: string;
-  existance: boolean;
-}[] = [
-  {
-    image: Penguin,
-    imageAlt: "penguin",
-    title: "Penguin استیکر",
-    existance: false,
-    price: 2000,
-  },
-  {
-    image: Vanilla,
-    imageAlt: "penguin",
-    title: "Penguin استیکر",
-    existance: false,
-    price: 2000,
-  },
-  {
-    image: Penguin,
-    imageAlt: "penguin",
-    title: "Penguin استیکر",
-    existance: false,
-    price: 2000,
-  },
-  {
-    image: Octopus,
-    imageAlt: "penguin",
-    title: "Penguin استیکر",
-    existance: false,
-    price: 2000,
-  },
-  {
-    image: Lama,
-    imageAlt: "penguin",
-    title: "Penguin استیکر",
-    existance: false,
-    price: 2000,
-  },
-];
+import { items } from "./DataDump";
+import Product from "./product";
 
 // const filteredDetail=details.filter(i=>{
 //   return i.existance==data["selected"]
 // })
-
-const categoryStickers = details.map((item) => (
-  <Card>
-    <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
-    <CardContent>
-      <Description text={item.title} />
-      <Price price={item.price} existence={item.existance} />
-    </CardContent>
-    <AddToCart />
-  </Card>
-));
 
 const Category: FC = () => {
   const { data, addData } = useData()!;
@@ -79,7 +26,11 @@ const Category: FC = () => {
     <Container>
       <ItemHeader text="دسته بندی استیکر" />
       <FilterSticker />
-      <GridSticker items={categoryStickers} />
+      <GridSticker
+        items={items.map((i) => (
+          <Product items={i} />
+        ))}
+      />
     </Container>
   );
 };

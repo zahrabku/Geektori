@@ -61,8 +61,6 @@ const Navbar: FC = () => {
     </Menu>
   ));
 
-  const items = [<div />];
-
   return (
     <Container>
       <Menu className="menu">
@@ -71,11 +69,7 @@ const Navbar: FC = () => {
         </Menu>
         <Menu className="small-menu left" items={leftMenuItems}></Menu>
       </Menu>
-      {useData()?.shoppingCartModalIsOpen ? (
-        <ShoppingCartModal items={items} />
-      ) : (
-        ""
-      )}
+      {useData()?.shoppingCartModalIsOpen ? <ShoppingCartModal /> : ""}
     </Container>
   );
 };
