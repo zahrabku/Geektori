@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { useData } from "../context";
-import { AddToCart, Card } from "./card";
-import { CardContent, Description, Price } from "./card-content";
-import { CardMedia } from "./card-media";
+import { AddToCart, Card } from "./Card";
+import { CardContent, Description, Price } from "./CardContent";
+import { CardMedia } from "./CardMedia";
 import { CardItems } from "./DataDump";
 
 interface IProduct {
