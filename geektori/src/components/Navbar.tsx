@@ -1,23 +1,23 @@
 import React, { FC } from "react";
 import { Menu, MenuItemIcon, MenuItemName } from "./Menu";
-import { Image } from "./card-media";
+import { Image } from "./CardMedia";
 import { rightMenuCategories, leftMenuCategories } from "./DataDump";
-import Container from "./container";
+import Container from "./Container";
 import Geektori from "../images/geek-logo.png";
 import ShoppingCartModal from "./shoppingCartModal";
 import { useData } from "../context";
 import {
-  FaAngleDown,
-  FaShoppingBasket,
-  FaHeart,
-  FaSearch,
+	FaAngleDown,
+	FaShoppingBasket,
+	FaHeart,
+	FaSearch,
 } from "react-icons/fa";
 
 interface MenuCategories {
-  name: string;
-  icon?: any;
-  classNameStyle?: string;
-  click?: () => void;
+	name: string;
+	icon?: any;
+	classNameStyle?: string;
+	click?: () => void;
 }
 
 const Navbar: FC = () => {
@@ -45,34 +45,33 @@ const Navbar: FC = () => {
     },
   ];
 
-  const rightMenuItems = rightMenuCategories.map((item) => (
-    <Menu className={`menu-item ${item.classNameStyle ?? ""}`}>
-      <MenuItemName>{item.name}</MenuItemName>
-      {item.icon}
-    </Menu>
-  ));
+	const rightMenuItems = rightMenuCategories.map((item) => (
+		<Menu className={`menu-item ${item.classNameStyle ?? ""}`}>
+			<MenuItemName>{item.name}</MenuItemName>
+			{item.icon}
+		</Menu>
+	));
 
-  const leftMenuItems = leftMenuCategories.map((item) => (
-    <Menu
-      className={`menu-item ${item.classNameStyle ?? ""}`}
-      click={item.click}
-    >
-      {item.icon}
-      <MenuItemName>{item.name}</MenuItemName>
-    </Menu>
-  ));
+	const leftMenuItems = leftMenuCategories.map((item) => (
+		<Menu
+			className={`menu-item ${item.classNameStyle ?? ""}`}
+			click={item.click}>
+			{item.icon}
+			<MenuItemName>{item.name}</MenuItemName>
+		</Menu>
+	));
 
-  return (
-    <Container>
-      <Menu className="menu">
-        <Menu className="small-menu right" items={rightMenuItems}>
-          <Image className="geektori-logo" src={Geektori} alt="geektori logo" />
-        </Menu>
-        <Menu className="small-menu left" items={leftMenuItems}></Menu>
-      </Menu>
-      {useData()?.shoppingCartModalIsOpen ? <ShoppingCartModal /> : ""}
-    </Container>
-  );
+	return (
+		<Container>
+			<Menu className='menu'>
+				<Menu className='small-menu right' items={rightMenuItems}>
+					<Image className='geektori-logo' src={Geektori} alt='geektori logo' />
+				</Menu>
+				<Menu className='small-menu left' items={leftMenuItems}></Menu>
+			</Menu>
+			{useData()?.shoppingCartModalIsOpen ? <ShoppingCartModal /> : ""}
+		</Container>
+	);
 };
 
 export { Navbar };

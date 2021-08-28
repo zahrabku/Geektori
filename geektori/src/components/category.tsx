@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { AddToCart, Card } from "./card";
-import { CardContent, Description, Price } from "./card-content";
-import { CardMedia } from "./card-media";
-import Container from "./container";
+import { AddToCart, Card } from "./Card";
+import { CardContent, Description, Price } from "./CardContent";
+import { CardMedia } from "./CardMedia";
+import Container from "./Container";
 import Vanilla from "../images/vanilla.png";
 import Lama from "../images/lama.png";
 import Octopus from "../images/octopus.jpg";

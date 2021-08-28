@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Container from "./container";
+import Container from "./Container";
 import HorizontalLine from "./HorizontalLine";
 import "../styles/sass/ItemHeader.scss";
 

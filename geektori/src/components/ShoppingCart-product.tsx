@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Button from "./Button";
-import Container from "./container";
+import Container from "./Container";
 import { faMinus, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sass/ShoppingCart-product.scss";
 import { CardItems } from "./DataDump";

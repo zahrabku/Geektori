@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import Carousel from "./carousel";
-import Container from "./container";
+// import Carousel from "./Carousel";
+// import Container from "./components/Container";
 import FAQContainer from "./FAQContainer";
 import ItemHeader from "./ItemHeader";
 import "slick-carousel/slick/slick.css";
@@ -9,18 +9,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Product from "./product";
 import { items } from "./DataDump";
-
-
+import Carousel from "./carousel";
+import Container from "./Container";
 
 const Home: FC = () => {
-  return (
-    <Container>
-      <ItemHeader text="جدیدترین ها" />
-      <Carousel items={items.map(i=><Product items={i} />)} />
-      <ItemHeader text="سوالات پرتکرار" />
-      <FAQContainer />
-    </Container>
-  );
+	return (
+		<Container>
+			<ItemHeader text='جدیدترین ها' />
+			<Carousel
+				items={items.map((i) => (
+					<Product items={i} />
+				))}
+			/>
+			<ItemHeader text='سوالات پرتکرار' />
+			<FAQContainer />
+		</Container>
+	);
 };
 
 export default Home;

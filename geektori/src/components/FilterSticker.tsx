@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Container from "./container";
+import Container from "./Container";
 import "../styles/sass/filtersticker.scss";
 import DropDown from "./DropDown";
 import Switch from "./Switch";

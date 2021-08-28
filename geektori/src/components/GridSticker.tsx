@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Container from "./container";
+import Container from "./Container";
 import "../styles/sass/grid-template.scss";
 
 interface IItemsToShow {
