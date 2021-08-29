@@ -12,17 +12,17 @@ import Detail from "./pages/DetailPage";
 import { Navbar } from "./components/Navbar";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Container>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/category" component={Category} />
-		  <Route exact path="/product/:slug" component={Detail} />
-        </Switch>
-      </Container>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Container>
+				<Navbar />
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/category' component={Category} />
+					<Route exact path="/product/:id" component={Detail} />
+				</Switch>
+			</Container>
+		</BrowserRouter>
+	);
 }
 export default App;
