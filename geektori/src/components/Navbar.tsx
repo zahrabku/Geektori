@@ -21,28 +21,29 @@ interface MenuCategories {
 }
 
 const Navbar: FC = () => {
-	const leftMenuCategories: Partial<MenuCategories>[] = [
-		{
-			icon: <MenuItemIcon iconName={FaSearch} className='search-icon' />,
-		},
-		{
-			name: "سبد خرید",
-			icon: (
-				<MenuItemIcon
-					iconName={FaShoppingBasket}
-					className='shopping-basket-icon'
-				/>
-			),
-			classNameStyle: "shopping-basket",
-			click: useData()!.addShoppingCartModalIsOpen,
-		},
-		{
-			name: "عضویت",
-		},
-		{
-			name: "وارد شوید",
-		},
-	];
+  const Data = useData()!;
+  const leftMenuCategories: Partial<MenuCategories>[] = [
+    {
+      icon: <MenuItemIcon iconName={FaSearch} className="search-icon" />,
+    },
+    {
+      name: "سبد خرید",
+      icon: (
+        <MenuItemIcon
+          iconName={FaShoppingBasket}
+          className="shopping-basket-icon"
+        />
+      ),
+      classNameStyle: "shopping-basket",
+      click: () => Data.addShoppingCartModalIsOpen(),
+    },
+    {
+      name: "عضویت",
+    },
+    {
+      name: "وارد شوید",
+    },
+  ];
 
 	const rightMenuItems = rightMenuCategories.map((item) => (
 		<Menu className={`menu-item ${item.classNameStyle ?? ""}`}>

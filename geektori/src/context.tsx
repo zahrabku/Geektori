@@ -1,88 +1,127 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { useContext, useState } from "react";
-import { CardItems } from "./utils/DataDump";
+import { ICardItem } from "./utils/DataDump";
+import update from "immutability-helper";
+import { useEffect } from "react";
 
 const DataContext = React.createContext<
-  | {
-      data: Record<string, string>;
-      addData: (key: string, value: unknown) => void;
-      shoppingCartModalIsOpen: boolean;
-      addShoppingCartModalIsOpen: () => void;
-      CartItems: CardItems[];
-      handleAddToCart: (clickedItem: CardItems) => void;
-      handleRemoveFromCart: (id: number) => void;
-      handleDecrementProduct: (id: number) => void;
-    }
-  | undefined
+	| {
+			data: Record<string, string>;
+			addData: (key: string, value: unknown) => void;
+			shoppingCartModalIsOpen: boolean;
+			addShoppingCartModalIsOpen: () => void;
+			CartItems: ICardItem[];
+			openSnackBar: boolean;
+			handleOpenSnackBar: () => void;
+			handleCloseSnackBar: () => void;
+			handleAmount: (
+				cart: ICardItem,
+				type: "increment" | "decrement" | "remove"
+			) => void;
+	  }
+	| undefined
 >(undefined);
 
 const DataProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState({});
+	const [data, setData] = useState({});
 
-  const [shoppingCartModalIsOpen, setShoppingCartModalIsOpen] = useState(false);
+	const [shoppingCartModalIsOpen, setShoppingCartModalIsOpen] = useState(false);
 
-  const [CartItems, setCartItems] = useState<CardItems[]>([]);
+	const [cartItems, setCartItems] = useState<ICardItem[]>(
+		JSON.parse(localStorage.getItem("cartItems") || "{}")
+	);
 
-  const addData = (key: string, value: unknown) => {
-    setData({ ...data, [key]: value });
-  };
+	const [openSnackBar, setOpenSnackBar] = useState(false);
 
-  const addShoppingCartModalIsOpen = () => {
-    setShoppingCartModalIsOpen((blah) => !blah);
-  };
+	const addData = (key: string, value: unknown) => {
+		setData({ ...data, [key]: value });
+	};
 
-  const handleAddToCart = (clickedItem: CardItems) => {
-    setCartItems((prev) => {
-      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+	const addShoppingCartModalIsOpen = () => {
+		setShoppingCartModalIsOpen((blah) => !blah);
+	};
 
-      if (isItemInCart) {
-        return prev.map((item) =>
-          item.id === clickedItem.id
-            ? { ...item, amount: item.amount + 1 }
-            : item
-        );
-      }
+	const handleAddToCart = (clickedItem: ICardItem) => {
+		handleOpenSnackBar();
+		setCartItems((prev) => {
+			const isItemInCart = prev.find((item) => item.id === clickedItem.id);
 
-      return [...prev, { ...clickedItem, amount: 1 }];
-    });
+			if (isItemInCart) {
+				return prev.map((item) =>
+					item.id === clickedItem.id
+						? { ...item, amount: item.amount + 1 }
+						: item
+				);
+			}
 
-    // localStorage.setItem(`${clickedItem}`,clickedItem)
-  };
+			return [...prev, { ...clickedItem, amount: 1 }];
+		});
+	};
 
-  const handleRemoveFromCart = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+	const handleRemoveFromCart = (id: number) => {
+		setCartItems((prev) => prev.filter((item) => item.id !== id));
+	};
 
-  const handleDecrementProduct = (id: number) => {
-    // setCartItems((prev) => {
-    //   const item = prev.find((item) => item.id === id);
+	const handleDecrementProduct = (id: number) => {
+		const itemIndex = cartItems.findIndex((item) => item.id === id);
+		const item = cartItems[itemIndex];
+		const amount = item.amount - 1;
+		console.log(amount, item);
 
-    //   if (item) {
-    //     return prev.map((item) =>
-    //       item.id === id ? { ...item, amount: item.amount - 1 } : item
-    //     );
-    //   }
+		if (amount) {
+			setCartItems((prev) =>
+				update(prev, { [itemIndex]: { $set: { ...item, amount } } })
+			);
+		} else {
+			handleRemoveFromCart(id);
+		}
+	};
 
-    //   return handleRemoveFromCart(id);
-    // });
-  };
+	const handleAmount = (
+		cart: ICardItem,
+		type: "increment" | "decrement" | "remove"
+	) => {
+		switch (type) {
+			case "decrement":
+				handleDecrementProduct(cart.id);
+				break;
+			case "increment":
+				handleAddToCart(cart);
+				break;
+			case "remove":
+				handleRemoveFromCart(cart.id);
+				break;
+		}
+	};
 
-  return (
-    <DataContext.Provider
-      value={{
-        data,
-        addData,
-        shoppingCartModalIsOpen,
-        addShoppingCartModalIsOpen,
-        CartItems,
-        handleAddToCart,
-        handleRemoveFromCart,
-        handleDecrementProduct,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
-  );
+	useEffect(() => {
+		localStorage.setItem(`cartItems`, JSON.stringify(cartItems));
+	}, [cartItems]);
+
+	const handleOpenSnackBar = () => {
+		setOpenSnackBar(true);
+	};
+
+	const handleCloseSnackBar = () => {
+		setOpenSnackBar(false);
+	};
+
+	return (
+		<DataContext.Provider
+			value={{
+				data,
+				addData,
+				shoppingCartModalIsOpen,
+				addShoppingCartModalIsOpen,
+				CartItems: cartItems,
+				openSnackBar,
+				handleOpenSnackBar,
+				handleCloseSnackBar,
+				handleAmount,
+			}}>
+			{children}
+		</DataContext.Provider>
+	);
 };
 
 const useData = () => useContext(DataContext);
