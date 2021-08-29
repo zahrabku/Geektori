@@ -1,6 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { useContext, useState } from "react";
-import { CardItems } from "../src/components/DataDump";
+import { ICardItem } from "../src/components/DataDump";
+import update from "immutability-helper";
+import { useEffect } from "react";
 
 const DataContext = React.createContext<
   | {
@@ -8,10 +10,14 @@ const DataContext = React.createContext<
       addData: (key: string, value: unknown) => void;
       shoppingCartModalIsOpen: boolean;
       addShoppingCartModalIsOpen: () => void;
-      CartItems: CardItems[];
-      handleAddToCart: (clickedItem: CardItems) => void;
-      handleRemoveFromCart: (id: number) => void;
-      handleDecrementProduct: (id: number) => void;
+      CartItems: ICardItem[];
+      openSnackBar: boolean;
+      handleOpenSnackBar: () => void;
+      handleCloseSnackBar: () => void;
+      handleAmount: (
+        cart: ICardItem,
+        type: "increment" | "decrement" | "remove"
+      ) => void;
     }
   | undefined
 >(undefined);
@@ -21,7 +27,11 @@ const DataProvider: React.FC = ({ children }) => {
 
   const [shoppingCartModalIsOpen, setShoppingCartModalIsOpen] = useState(false);
 
-  const [CartItems, setCartItems] = useState<CardItems[]>([]);
+  const [cartItems, setCartItems] = useState<ICardItem[]>(
+    JSON.parse(localStorage.getItem("cartItems") || "{}")
+  );
+
+  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const addData = (key: string, value: unknown) => {
     setData({ ...data, [key]: value });
@@ -31,7 +41,8 @@ const DataProvider: React.FC = ({ children }) => {
     setShoppingCartModalIsOpen((blah) => !blah);
   };
 
-  const handleAddToCart = (clickedItem: CardItems) => {
+  const handleAddToCart = (clickedItem: ICardItem) => {
+    handleOpenSnackBar();
     setCartItems((prev) => {
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
 
@@ -45,8 +56,6 @@ const DataProvider: React.FC = ({ children }) => {
 
       return [...prev, { ...clickedItem, amount: 1 }];
     });
-
-    // localStorage.setItem(`${clickedItem}`,clickedItem)
   };
 
   const handleRemoveFromCart = (id: number) => {
@@ -54,17 +63,47 @@ const DataProvider: React.FC = ({ children }) => {
   };
 
   const handleDecrementProduct = (id: number) => {
-    // setCartItems((prev) => {
-    //   const item = prev.find((item) => item.id === id);
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
+    const item = cartItems[itemIndex];
+    const amount = item.amount - 1;
+    console.log(amount, item);
 
-    //   if (item) {
-    //     return prev.map((item) =>
-    //       item.id === id ? { ...item, amount: item.amount - 1 } : item
-    //     );
-    //   }
+    if (amount) {
+      setCartItems((prev) =>
+        update(prev, { [itemIndex]: { $set: { ...item, amount } } })
+      );
+    } else {
+      handleRemoveFromCart(id);
+    }
+  };
 
-    //   return handleRemoveFromCart(id);
-    // });
+  const handleAmount = (
+    cart: ICardItem,
+    type: "increment" | "decrement" | "remove"
+  ) => {
+    switch (type) {
+      case "decrement":
+        handleDecrementProduct(cart.id);
+        break;
+      case "increment":
+        handleAddToCart(cart);
+        break;
+      case "remove":
+        handleRemoveFromCart(cart.id);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem(`cartItems`, JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleOpenSnackBar = () => {
+    setOpenSnackBar(true);
+  };
+
+  const handleCloseSnackBar = () => {
+    setOpenSnackBar(false);
   };
 
   return (
@@ -74,10 +113,11 @@ const DataProvider: React.FC = ({ children }) => {
         addData,
         shoppingCartModalIsOpen,
         addShoppingCartModalIsOpen,
-        CartItems,
-        handleAddToCart,
-        handleRemoveFromCart,
-        handleDecrementProduct,
+        CartItems: cartItems,
+        openSnackBar,
+        handleOpenSnackBar,
+        handleCloseSnackBar,
+        handleAmount,
       }}
     >
       {children}

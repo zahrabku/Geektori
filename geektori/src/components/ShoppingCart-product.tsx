@@ -3,18 +3,19 @@ import Button from "./Button";
 import Container from "./Container";
 import { faMinus, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sass/ShoppingCart-product.scss";
-import { CardItems } from "./DataDump";
+import { ICardItem } from "./DataDump";
 
 interface IShoppingCartProduct {
-  item: CardItems;
-  add: (clickedItem: CardItems) => void;
-  remove: (id: number) => void;
+  item: ICardItem;
+  handleAmount: (
+    cart: ICardItem,
+    type: "increment" | "decrement" | "remove"
+  ) => void;
 }
 
 const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
   item,
-  remove,
-  add,
+  handleAmount
 }) => {
   return (
     <Container>
@@ -34,7 +35,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
             <Button
               icon={faTrashAlt}
               className="ShoppingCart-product-delete"
-              click={() => remove(item.id)}
+              click={() => handleAmount(item,'remove')}
             />
           </div>
           <div className="ShoppingCart-product-content-price">
@@ -45,7 +46,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
               <Button
                 className="ShoppingCart-product-button"
                 icon={faPlus}
-                click={() => add(item)}
+                click={() => handleAmount(item,'increment')}
               />
               <Button
                 className="ShoppingCart-product-button"
@@ -54,7 +55,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
               <Button
                 className="ShoppingCart-product-button"
                 icon={faMinus}
-                // click={() => remove(item.id)}
+                click={() => handleAmount(item,'decrement')}
               />
             </div>
           </div>
