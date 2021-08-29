@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-export const useSlug = () => {
-    const {slug} = useParams<{ slug: string }>();
-    return slug
+export const useId = () => {
+    const {id} = useParams<{ id: string }>();
+    return id
 }
