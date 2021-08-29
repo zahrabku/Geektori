@@ -21,29 +21,29 @@ interface MenuCategories {
 }
 
 const Navbar: FC = () => {
-  const Data = useData()!;
-  const leftMenuCategories: Partial<MenuCategories>[] = [
-    {
-      icon: <MenuItemIcon iconName={FaSearch} className="search-icon" />,
-    },
-    {
-      name: "سبد خرید",
-      icon: (
-        <MenuItemIcon
-          iconName={FaShoppingBasket}
-          className="shopping-basket-icon"
-        />
-      ),
-      classNameStyle: "shopping-basket",
-      click: () => Data.addShoppingCartModalIsOpen(),
-    },
-    {
-      name: "عضویت",
-    },
-    {
-      name: "وارد شوید",
-    },
-  ];
+	const Data = useData()!;
+	const leftMenuCategories: Partial<MenuCategories>[] = [
+		{
+			icon: <MenuItemIcon iconName={FaSearch} className='search-icon' />,
+		},
+		{
+			name: "سبد خرید",
+			icon: (
+				<MenuItemIcon
+					iconName={FaShoppingBasket}
+					className='shopping-basket-icon'
+				/>
+			),
+			classNameStyle: "shopping-basket",
+			click: () => Data.addShoppingCartModalIsOpen(),
+		},
+		{
+			name: "عضویت",
+		},
+		{
+			name: "وارد شوید",
+		},
+	];
 
 	const rightMenuItems = rightMenuCategories.map((item) => (
 		<Menu className={`menu-item ${item.classNameStyle ?? ""}`}>
@@ -62,7 +62,7 @@ const Navbar: FC = () => {
 	));
 
 	return (
-		<Container className="main-container">
+		<Container className='main-container'>
 			<Menu className='menu'>
 				<Menu className='small-menu right' items={rightMenuItems}>
 					<Image className='geektori-logo' src={Geektori} alt='geektori logo' />

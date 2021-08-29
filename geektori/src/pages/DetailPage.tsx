@@ -9,11 +9,9 @@ import {
 import Container from "../components/Container";
 import { Image } from "../components/CardMedia";
 import { useId } from "../hooks";
+import { items } from "../utils/DataDump";
 import "../styles/sass/detail-card.scss";
 import "../styles/sass/container__body.scss";
-import Lama from "../images/lama.png";
-import { items } from "../utils/DataDump";
-import { Price } from "../components/CardContent";
 
 // import colors from "../styles/sass/_colors.scss";
 
