@@ -16,6 +16,7 @@ const MenuItemName = styled.a`
 	color: rgb(50, 50, 93);
 	font-size: 16px;
 	text-decoration: none;
+	cursor:pointer;
 `;
 
 const MenuItemInput = styled.input`

@@ -1,12 +1,5 @@
 import React, { FC } from "react";
-import { AddToCart, Card } from "./Card";
-import { CardContent, Description, Price } from "./CardContent";
-import { CardMedia } from "./CardMedia";
 import Container from "./Container";
-import Vanilla from "../images/vanilla.png";
-import Lama from "../images/lama.png";
-import Octopus from "../images/octopus.jpg";
-import Penguin from "../images/penguin.png";
 import ItemHeader from "./ItemHeader";
 import FilterSticker from "./FilterSticker";
 import GridSticker from "./GridSticker";
