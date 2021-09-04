@@ -4,6 +4,7 @@ import { ICardItem } from "../src/utils/DataDump";
 import update from "immutability-helper";
 import { useEffect } from "react";
 import useLocalStorage from "./hooks";
+import { useCallback } from "react";
 
 const DataContext = React.createContext<
   | {
@@ -42,7 +43,7 @@ const DataProvider: React.FC = ({ children }) => {
     setShoppingCartModalIsOpen((blah) => !blah);
   };
 
-  const handleAddToCart = (clickedItem: ICardItem) => {
+  const handleAddToCart = useCallback((clickedItem: ICardItem) => {
     handleOpenSnackBar();
     setCartItems((prev) => {
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
@@ -57,13 +58,13 @@ const DataProvider: React.FC = ({ children }) => {
 
       return [...prev, { ...clickedItem, amount: 1 }];
     });
-  };
+  }, []);
 
   const handleRemoveFromCart = (id: number) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleDecrementProduct = (id: number) => {
+  const handleDecrementProduct = useCallback((id: number) => {
     const itemIndex = cartItems.findIndex((item) => item.id === id);
     const item = cartItems[itemIndex];
     const amount = item.amount - 1;
@@ -76,7 +77,7 @@ const DataProvider: React.FC = ({ children }) => {
     } else {
       handleRemoveFromCart(id);
     }
-  };
+  }, [cartItems]);
 
   const handleAmount = (
     cart: ICardItem,
@@ -97,9 +98,7 @@ const DataProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     setValue(cartItems);
-    console.log(cartItems);
-    console.log(storedValue);
-  }, [cartItems, setValue, storedValue]);
+  }, [cartItems]);
 
   const handleOpenSnackBar = () => {
     setOpenSnackBar(true);

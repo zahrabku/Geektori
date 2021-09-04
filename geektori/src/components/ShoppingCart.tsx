@@ -5,13 +5,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useData } from "../context";
 import ShoppingCartProduct from "./ShoppingCart-product";
 import { ICardItem } from "../utils/DataDump";
-import useLocalStorage from "../hooks";
 import { useEffect } from "react";
+import { useMemo } from "react";
 
 const ShoppingCart: FC = () => {
   const data = useData()!;
 
-  const [storedValue, setValue] = useLocalStorage("cartItems", []);
+  const { CartItems, addShoppingCartModalIsOpen } = useData()!;
 
   useEffect(() => {});
 
@@ -28,25 +28,29 @@ const ShoppingCart: FC = () => {
     return items.length;
   };
 
+  const totalCount = useMemo(() => {
+    return getTotalItems(CartItems).toString()
+  }, [CartItems])
+
   return (
     <div className="shoppingCart-container">
       <div className="shoppingCart-header">
         <Button
           className="close-button"
           icon={faTimes}
-          click={useData()!.addShoppingCartModalIsOpen}
+          click={addShoppingCartModalIsOpen}
         />
         <div className="shoppingCart-header-text">سبد خرید</div>
         <div className="shoppingCart-header-numberOfItems">
           <Button
             className="shoppingCart-header-numberOfItems-badge"
-            text={getTotalItems(storedValue).toString()}
+            text={totalCount}
           ></Button>
         </div>
       </div>
       <div className="shoppingCart-body">
-        {storedValue.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
-        {storedValue.map((i: ICardItem) => {
+        {CartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
+        {CartItems.map((i: ICardItem) => {
           return (
             <ShoppingCartProduct item={i} handleAmount={data.handleAmount} />
           );
@@ -56,7 +60,7 @@ const ShoppingCart: FC = () => {
         <div className="shoppingCart-totalPrice">
           <div className="shoppingCart-totalPrice-text">مبلغ سبد خرید:</div>
           <div className="shoppingCart-totalPrice-number shoppingCart-header-text">
-            {calculateTotalPrice(storedValue)} تومان
+            {calculateTotalPrice(CartItems)} تومان
           </div>
         </div>
         <Button
