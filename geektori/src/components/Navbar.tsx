@@ -1,17 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Menu, MenuItemIcon, MenuItemName } from "./Menu";
 import { Image } from "./CardMedia";
 import { rightMenuCategories, leftMenuCategories } from "../utils/DataDump";
 import Container from "./Container";
 import Geektori from "../images/geek-logo.png";
-import ShoppingCartModal from "./shoppingCartModal";
-import { useData } from "../context";
+import { useShoppingCart } from "../contexts/shopping-cart-context";
 import {
 	FaAngleDown,
 	FaShoppingBasket,
 	FaHeart,
 	FaSearch,
+	FaCircle,
+	FaRegWindowClose,
 } from "react-icons/fa";
+import { ShoppingCart, ShoppingCartSection } from "./ShoppingCart";
+import Button from "./Button";
 
 interface MenuCategories {
 	name: string;
@@ -21,7 +24,8 @@ interface MenuCategories {
 }
 
 const Navbar: FC = () => {
-	const Data = useData()!;
+	const { setIsOpenShoppingCart } = useShoppingCart()!;
+
 	const leftMenuCategories: Partial<MenuCategories>[] = [
 		{
 			icon: <MenuItemIcon iconName={FaSearch} className='search-icon' />,
@@ -35,7 +39,7 @@ const Navbar: FC = () => {
 				/>
 			),
 			classNameStyle: "shopping-basket",
-			click: () => Data.addShoppingCartModalIsOpen(),
+			click: () => setIsOpenShoppingCart(true),
 		},
 		{
 			name: "عضویت",
@@ -69,9 +73,46 @@ const Navbar: FC = () => {
 				</Menu>
 				<Menu className='small-menu left' items={leftMenuItems}></Menu>
 			</Menu>
-			{useData()?.shoppingCartModalIsOpen ? <ShoppingCartModal /> : ""}
 		</Container>
 	);
 };
 
-export { Navbar };
+// ye items bayad begire -> ye list az item haei ke tu sabad kharid hastan
+
+const ShoppingBasket: FC = () => {
+	const { isOpenShoppingCart, setIsOpenShoppingCart } =
+		useShoppingCart()!;
+
+	return isOpenShoppingCart ? (
+		<ShoppingCart>
+			<Container className='main-container'>
+				<ShoppingCartSection className='shopping-cart-header'>
+					<FaRegWindowClose
+						style={{ fontSize: "30px" }}
+						onClick={() => setIsOpenShoppingCart(false)}
+					/>
+					<h3>سبد خرید</h3>
+					<FaCircle style={{ fontSize: "30px", color: "#606CEC" }} />
+					{/* <div
+					style={{
+						width: "25px",
+						height: "25px",
+						borderRadius: "50px",
+						color: "#606CEC",
+					}}></div> */}
+				</ShoppingCartSection>
+				<hr style={{ margin: "15px 0" }} />
+				<ShoppingCartSection className='shopping-cart-amount'>
+					<h4>مبلغ سبد خرید</h4>
+					<h3>تومان</h3>
+				</ShoppingCartSection>
+				<hr style={{ margin: "15px 0" }} />
+				<ShoppingCartSection className='shopping-cart-final'>
+					<button className='final-shop-btn'>نهایی کردن خرید</button>
+				</ShoppingCartSection>
+			</Container>
+		</ShoppingCart>
+	) : null;
+};
+
+export { Navbar, ShoppingBasket };

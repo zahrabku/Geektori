@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import { useData } from "../context";
+import { useShoppingCart } from "../contexts/shopping-cart-context";
 import { AddToCart, Card } from "./Card";
 import { CardContent, Description, Price } from "./CardContent";
 import { CardMedia } from "./CardMedia";
@@ -11,7 +11,8 @@ interface IProduct {
 }
 
 const Product: FC<IProduct> = ({ items }) => {
-	const data = useData()!;
+	const {state, dispatch} = useShoppingCart()!;
+
 	return (
 		<div>
 			<Link to={"/product/" + items.id} style={{ textDecoration: "none" }}>
@@ -22,7 +23,7 @@ const Product: FC<IProduct> = ({ items }) => {
 						<Price price={items.price} existence={items.existance} />
 					</CardContent>
 					{items.existance ? (
-						<AddToCart click={() => data.handleAmount(items, "increment")} />
+						<AddToCart click={() => ShoppingCartItemsSate(items, "increment")} />
 					) : (
 						""
 					)}
