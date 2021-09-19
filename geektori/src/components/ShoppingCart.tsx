@@ -9,15 +9,13 @@ import { useEffect } from "react";
 import { useMemo } from "react";
 
 const ShoppingCart: FC = () => {
-  const data = useData()!;
-
   const { CartItems, addShoppingCartModalIsOpen } = useData()!;
 
   useEffect(() => {});
 
   const calculateTotalPrice = (items: ICardItem[]) => {
     let totalPrice = 0;
-    items.map((item) => {
+    items.forEach((item) => {
       totalPrice += item.amount * item.price;
     });
 
@@ -29,8 +27,8 @@ const ShoppingCart: FC = () => {
   };
 
   const totalCount = useMemo(() => {
-    return getTotalItems(CartItems).toString()
-  }, [CartItems])
+    return getTotalItems(CartItems).toString();
+  }, [CartItems]);
 
   return (
     <div className="shoppingCart-container">
@@ -51,9 +49,7 @@ const ShoppingCart: FC = () => {
       <div className="shoppingCart-body">
         {CartItems.length === 0 ? "هنوز محصولی اضافه نکردید" : ""}
         {CartItems.map((i: ICardItem) => {
-          return (
-            <ShoppingCartProduct item={i} handleAmount={data.handleAmount} />
-          );
+          return <ShoppingCartProduct item={i} />;
         })}
       </div>
       <div className="shoppingCart-footer">

@@ -1,10 +1,12 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { ICardItem } from "../src/utils/DataDump";
-import update from "immutability-helper";
 import { useEffect } from "react";
 import useLocalStorage from "./hooks";
-import { useCallback } from "react";
+import { useReducer } from "react";
+import { shoppingCartReducer } from "./shoppingcart/reducer";
+import { addProductAction } from "./shoppingcart/actions";
+import { Actions } from "./shoppingcart/types";
 
 const DataContext = React.createContext<
   | {
@@ -16,10 +18,7 @@ const DataContext = React.createContext<
       openSnackBar: boolean;
       handleOpenSnackBar: () => void;
       handleCloseSnackBar: () => void;
-      handleAmount: (
-        cart: ICardItem,
-        type: "increment" | "decrement" | "remove"
-      ) => void;
+      dispatch: React.Dispatch<Actions>;
     }
   | undefined
 >(undefined);
@@ -31,7 +30,9 @@ const DataProvider: React.FC = ({ children }) => {
 
   const [shoppingCartModalIsOpen, setShoppingCartModalIsOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useState<ICardItem[]>(storedValue);
+  const [state, dispatch] = useReducer(shoppingCartReducer, {
+    products: storedValue,
+  });
 
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
@@ -43,62 +44,9 @@ const DataProvider: React.FC = ({ children }) => {
     setShoppingCartModalIsOpen((blah) => !blah);
   };
 
-  const handleAddToCart = useCallback((clickedItem: ICardItem) => {
-    handleOpenSnackBar();
-    setCartItems((prev) => {
-      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
-
-      if (isItemInCart) {
-        return prev.map((item) =>
-          item.id === clickedItem.id
-            ? { ...item, amount: item.amount + 1 }
-            : item
-        );
-      }
-
-      return [...prev, { ...clickedItem, amount: 1 }];
-    });
-  }, []);
-
-  const handleRemoveFromCart = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const handleDecrementProduct = useCallback((id: number) => {
-    const itemIndex = cartItems.findIndex((item) => item.id === id);
-    const item = cartItems[itemIndex];
-    const amount = item.amount - 1;
-    // console.log(amount, item);
-
-    if (amount) {
-      setCartItems((prev) =>
-        update(prev, { [itemIndex]: { $set: { ...item, amount } } })
-      );
-    } else {
-      handleRemoveFromCart(id);
-    }
-  }, [cartItems]);
-
-  const handleAmount = (
-    cart: ICardItem,
-    type: "increment" | "decrement" | "remove"
-  ) => {
-    switch (type) {
-      case "decrement":
-        handleDecrementProduct(cart.id);
-        break;
-      case "increment":
-        handleAddToCart(cart);
-        break;
-      case "remove":
-        handleRemoveFromCart(cart.id);
-        break;
-    }
-  };
-
   useEffect(() => {
-    setValue(cartItems);
-  }, [cartItems]);
+    setValue(state.products);
+  }, [state.products]);
 
   const handleOpenSnackBar = () => {
     setOpenSnackBar(true);
@@ -115,11 +63,11 @@ const DataProvider: React.FC = ({ children }) => {
         addData,
         shoppingCartModalIsOpen,
         addShoppingCartModalIsOpen,
-        CartItems: cartItems,
+        CartItems: state.products,
         openSnackBar,
         handleOpenSnackBar,
         handleCloseSnackBar,
-        handleAmount,
+        dispatch,
       }}
     >
       {children}

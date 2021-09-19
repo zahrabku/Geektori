@@ -4,19 +4,19 @@ import Container from "./Container";
 import { faMinus, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sass/ShoppingCart-product.scss";
 import { ICardItem } from "../utils/DataDump";
+import { useData } from "../context";
+import {
+  decrementProductAction,
+  incrementProductAction,
+  removeProductAction,
+} from "../shoppingcart/actions";
 
 interface IShoppingCartProduct {
   item: ICardItem;
-  handleAmount: (
-    cart: ICardItem,
-    type: "increment" | "decrement" | "remove"
-  ) => void;
 }
 
-const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
-  item,
-  handleAmount,
-}) => {
+const ShoppingCartProduct: FC<IShoppingCartProduct> = ({ item }) => {
+  const { dispatch } = useData()!;
   return (
     <Container>
       <div className="ShoppingCart-product-container">
@@ -35,7 +35,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
             <Button
               icon={faTrashAlt}
               className="ShoppingCart-product-delete"
-              click={() => handleAmount(item, "remove")}
+              click={() => dispatch(removeProductAction(item.id))}
             />
           </div>
           <div className="ShoppingCart-product-content-price">
@@ -46,7 +46,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
               <Button
                 className="ShoppingCart-product-button"
                 icon={faPlus}
-                click={() => handleAmount(item, "increment")}
+                click={() => dispatch(incrementProductAction(item.id))}
               />
               <Button
                 className="ShoppingCart-product-button"
@@ -55,7 +55,7 @@ const ShoppingCartProduct: FC<IShoppingCartProduct> = ({
               <Button
                 className="ShoppingCart-product-button"
                 icon={faMinus}
-                click={() => handleAmount(item, "decrement")}
+                click={() => dispatch(decrementProductAction(item.id))}
               />
             </div>
           </div>
