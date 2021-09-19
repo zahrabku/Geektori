@@ -5,25 +5,26 @@ import { AddToCart, Card } from "./Card";
 import { CardContent, Description, Price } from "./CardContent";
 import { CardMedia } from "./CardMedia";
 import { ICardItem } from "../utils/DataDump";
+import { addProductAction } from "../shoppingcart/actions";
 
 interface IProduct {
-  items: ICardItem;
+  item: ICardItem;
 }
 
-const Product: FC<IProduct> = ({ items }) => {
-  const data = useData()!;
+const Product: FC<IProduct> = ({ item }) => {
+  const {dispatch} = useData()!;
   return (
     <div>
       <Card>
-        <Link to={"/product/" + items.id} style={{ textDecoration: "none" }}>
-          <CardMedia imageSrc={items.image} imageAlt={items.imageAlt} />
+        <Link to={"/product/" + item.id} style={{ textDecoration: "none" }}>
+          <CardMedia imageSrc={item.image} imageAlt={item.imageAlt} />
           <CardContent>
-            <Description text={items.title} />
-            <Price price={items.price} existence={items.existance} />
+            <Description text={item.title} />
+            <Price price={item.price} existence={item.existance} />
           </CardContent>
         </Link>
-        {items.existance ? (
-          <AddToCart click={() => data.handleAmount(items, "increment")} />
+        {item.existance ? (
+          <AddToCart click={() => dispatch(addProductAction(item))} />
         ) : (
           ""
         )}
