@@ -36,6 +36,17 @@ const DataProvider: React.FC = ({ children }) => {
 
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
+  const [filterData, setFilterData] = useState({
+    existance: false,
+    off: false,
+    category: "",
+    price: [0, 10000],
+  });
+
+  // const handleFilterData = (key: keyof typeof filterData, value: unknown) => {
+  //   setFilterData((prev) => update(prev, { [key]: { $set: value } }));
+  // };
+
   const addData = (key: string, value: unknown) => {
     setData({ ...data, [key]: value });
   };

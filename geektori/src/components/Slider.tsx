@@ -1,16 +1,34 @@
 import React from "react";
 import { FC } from "react";
 import Slider from "@material-ui/core/Slider";
+import Tooltip from "@material-ui/core/Tooltip";
 import { useState } from "react";
 import SliderButton from "./SliderButton";
+import "../styles/sass/slider.scss";
 
+interface IValueLabelComponent {
+  children: React.ReactElement;
+  open: boolean;
+  value: number;
+}
 
-function valueLabelFormat(value: number) {
-  return `${value} `;
+function ValueLabelComponent(props: IValueLabelComponent) {
+  const { children, open, value } = props;
+  return (
+    <Tooltip
+      open={open}
+      enterTouchDelay={0}
+      placement="top"
+      title={value}
+      // className="slider-tooltip"
+    >
+      {children}
+    </Tooltip>
+  );
 }
 
 const RangeSlider: FC = (props) => {
-  const [sliderValue, setSliderValue] = useState<number[]>([206000, 336000]);
+  const [sliderValue, setSliderValue] = useState<number[]>([0, 10000]);
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
     setSliderValue(newValue as number[]);
@@ -23,17 +41,14 @@ const RangeSlider: FC = (props) => {
           value={sliderValue}
           min={0}
           step={500}
-          max={sliderValue[1]}
+          max={10000}
           onChange={handleSliderChange}
           valueLabelDisplay="on"
           aria-labelledby="range-slider"
-          // getAriaValueText={valueLabelFormat}
-          valueLabelFormat={valueLabelFormat}
-          className='main-slider'
-          // ValueLabelComponent={SliderButton}
+          className="main-slider"
         />
         <span className="input-range--label input-range--label--max">
-            366000 تومان
+          10000 تومان
         </span>
         <span className="input-range--label input-range--label--min">
           0 تومان
