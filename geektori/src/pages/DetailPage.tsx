@@ -13,6 +13,7 @@ import { items } from "../utils/DataDump";
 import "../styles/sass/detail-card.scss";
 import "../styles/sass/container__body.scss";
 import { useData } from "../context";
+import { addProductAction } from "../shoppingcart/actions";
 
 // import colors from "../styles/sass/_colors.scss";
 
@@ -42,7 +43,7 @@ const AddToCartButton = styled.button`
   font-weight: bold;
   border-radius: 3px;
   border-style: none;
-  cursor:pointer;
+  cursor: pointer;
   color: ${(props) => (props.disabled ? "#B9B9B9" : "#FFFF")};
   background: ${(props) => (props.disabled ? "#e8e8e8" : "#3ecf8e")};
 `;
@@ -91,7 +92,7 @@ interface EstickerDetailProps {
 const Detail = (props: EstickerDetailProps) => {
   const id = useId();
   const card = items.find((c) => c.id === Number(id));
-  const data = useData()!;
+  const { dispatch } = useData()!;
 
   return (
     <Container className="main-container">
@@ -113,7 +114,7 @@ const Detail = (props: EstickerDetailProps) => {
           <EstickerInfo>
             <AddToCartButton
               disabled={!card?.existance}
-              onClick={() => data.handleAmount(card!, "increment")}
+              onClick={() => dispatch(addProductAction(card!))}
             >
               اضافه به سبد خرید
             </AddToCartButton>

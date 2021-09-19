@@ -16,7 +16,7 @@ const Home: FC = () => {
 			<ItemHeader text='جدیدترین ها' />
 			<Carousel
 				items={items.map((i) => (
-					<Product items={i} />
+					<Product item={i} />
 				))}
 			/>
 			<ItemHeader text='سوالات پرتکرار' />

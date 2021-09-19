@@ -21,7 +21,7 @@ const Category: FC = () => {
       <FilterSticker />
       <GridSticker
         items={items.map((i) => (
-          <Product items={i} />
+          <Product item={i} />
         ))}
       />
     </Container>
